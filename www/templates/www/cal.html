@@ -1,6 +1,81 @@
 {% extends 'base/base.html' %}
 
+{% block style %}
+<style>
+.Calendar {
+    border: 1px solid black;
+    width: 700px;
+    margin: 0 auto;
+}
+
+.Calendar .WeekHeader th {
+    border: 1px solid green;
+}
+
+.Calendar .CalDay_6, /* Sunday */
+.Calendar .CalDay_5 { /* Saturday */
+    background-color: #bbb;
+}
+
+.Calendar .day {
+    vertical-align: top;
+    border: 1px solid blue;
+    width: 100px;
+    height: 100px;
+}
+
+.Calendar .noday {
+    background-color: #aaa;
+}
+
+.Calendar th {
+    text-align: center;
+}
+
+.Calendar .Event {
+    border: 1px solid orange;
+    overflow: hidden;
+    height: 1.5em;
+    padding: 0;
+    font-size: 8pt;
+}
+</style>
+{% endblock style %}
+
 {% block content %}
-Foo
+<table class="Calendar">
+    <tr class="WeekHeader">
+        <th class="Sunday">Sun</th>
+        <th class="Monday">Mon</th>
+        <th class="Tuesday">Tue</th>
+        <th class="Wednesday">Wed</th>
+        <th class="Thursday">Thu</th>
+        <th class="Friday">Fri</th>
+        <th class="Saturday">Sat</th>
+    </tr>
+{% for week in cal %}
+    <tr class="week">
+{% for day in week %}
+        {% if day.0 != 0 %}
+        <td class="CalDay_{{day.1}} day">{{day.0}}
+        {% for theday, event_list in events.items %}
+            {% if theday == day.0 %}
+            {% for event in event_list %}
+            <div class="Event">{{event.short_time}} {{event.short_title}}</div>
+            {% endfor %}
+            {% endif %}
+        {% endfor %}
+        </td>
+        {% else %}
+        <td class="CalDay_{{day.1}} noday">&nbsp;</td>
+        {% endif %}
+{% endfor %}
+    </tr>
+{% endfor %}
+</table> <!-- /.Calendar -->
+
+<div>
+{{events}}
+</div>
 {% endblock content %}
 
