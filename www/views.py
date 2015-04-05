@@ -1,17 +1,20 @@
 import datetime
 import calendar
 
+import pytz
+
 from django.shortcuts import render
 from django.conf import settings
+from django.utils import timezone
 
 from www.models import Event, Registrant
-
 
 def home(request):
     cd = {}
     return render(request, 'www/home.html', cd)
 
 def cal(request, year=None, month=None):
+    timezone.activate(pytz.timezone('America/Denver'))
     cd = {}
     now = datetime.datetime.now()
     
@@ -38,6 +41,7 @@ def cal(request, year=None, month=None):
         events_list = cd['events'].get(event.from_time.day, [])
         events_list.append(event)
         cd['events'][event.from_time.day] = events_list
+        #raise Exception(str(cd['events']))
     
     c = calendar.Calendar(calendar.SUNDAY)
     cd['cal'] = c.monthdays2calendar(year, month)

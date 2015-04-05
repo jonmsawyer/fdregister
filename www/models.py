@@ -22,7 +22,10 @@ class Event(models.Model):
     price = models.IntegerField()
     location = models.CharField(max_length=100, blank=True, null=True)
     is_closed = models.BooleanField(default=False)
-    is_published = models.BooleanField(default=False)
+    is_published = models.BooleanField(default=True)
+
+    class Meta:
+        ordering = ['-from_time']
     
     def __unicode__(self):
         return self.short_title
