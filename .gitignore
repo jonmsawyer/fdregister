@@ -1,3 +1,6 @@
+conf/site_settings.py
+fdregister/wsgi-virtualenv.py
+
 # Custom
 *~
 

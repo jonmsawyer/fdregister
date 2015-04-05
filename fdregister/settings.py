@@ -1,30 +1,16 @@
 """
 Django settings for fdregister project.
-
-For more information on this file, see
-https://docs.djangoproject.com/en/1.7/topics/settings/
-
-For the full list of settings and their values, see
-https://docs.djangoproject.com/en/1.7/ref/settings/
 """
 
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+from conf import site_settings
+
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
-
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'k$t5ib@*(68k9-6pz&vb!#s41)v7uq4i5q%1d+tmx@=lqhbcln'
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-TEMPLATE_DEBUG = True
-
-ALLOWED_HOSTS = []
+SECRET_KEY = site_settings.SECRET_KEY
+DEBUG = site_settings.DEBUG
+TEMPLATE_DEBUG = site_settings.TEMPLATE_DEBUG
+ALLOWED_HOSTS = site_settings.ALLOWED_HOSTS
+DATABASES = site_settings.DATABASES
 
 # Application definition
 
@@ -49,37 +35,15 @@ MIDDLEWARE_CLASSES = (
 )
 
 ROOT_URLCONF = 'fdregister.urls'
-
 WSGI_APPLICATION = 'fdregister.wsgi.application'
+LANGUAGE_CODE = site_settings.LANGUAGE_CODE
+TIME_ZONE = site_settings.TIME_ZONE
+USE_I18N = site_settings.USE_I18N
+USE_L10N = site_settings.USE_L10N
+USE_TZ = site_settings.USE_TZ
+STATIC_URL = site_settings.STATIC_URL
 
-
-# Database
-# https://docs.djangoproject.com/en/1.7/ref/settings/#databases 
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
-
-# Internationalization
-# https://docs.djangoproject.com/en/1.7/topics/i18n/
-
-LANGUAGE_CODE = 'en-us'
-
-TIME_ZONE = 'America/Anchorage'
-
-USE_I18N = True
-
-USE_L10N = True
-
-USE_TZ = True
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.7/howto/static-files/
-
-STATIC_URL = '/fdregister/static/'
+# fdregister specific config
 
 CAL_MONTHS = {
     1: 'January',
@@ -95,3 +59,4 @@ CAL_MONTHS = {
     11: 'November',
     12: 'December',
 }
+
