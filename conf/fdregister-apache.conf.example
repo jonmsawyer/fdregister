@@ -11,19 +11,19 @@
   SSLCertificateKeyFile /etc/apache2/ssl/server.key
 
   ServerAdmin admin@example.com
-  DocumentRoot /home/jonmsawyer/register.flydragondesign.com/htdocs
+  DocumentRoot /path/to/register.flydragondesign.com/htdocs
   ServerName register.flydragondesign.com
-  CustomLog "|/usr/sbin/rotatelogs /home/jonmsawyer/register.flydragondesign.com/apache-logs/ssl_access_log 5M" "%h %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-agent}i\""
-  ErrorLog "|/usr/sbin/rotatelogs /home/jonmsawyer/register.flydragondesign.com/apache-logs/ssl_error_log 5M"
+  CustomLog "|/usr/sbin/rotatelogs /path/to/register.flydragondesign.com/apache-logs/ssl_access_log 5M" "%h %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-agent}i\""
+  ErrorLog "|/usr/sbin/rotatelogs /path/to/register.flydragondesign.com/apache-logs/ssl_error_log 5M"
 
-  WSGIScriptAlias / /home/jonmsawyer/register.flydragondesign.com/fdregister/fdregister/wsgi-virtualenv.py
+  WSGIScriptAlias / /path/to/register.flydragondesign.com/fdregister/fdregister/wsgi-virtualenv.py
 
-  Alias /static/admin /home/jonmsawyer/.virtualenvs/fdregister/lib/python2.7/site-packages/django/contrib/admin/static/admin
-  Alias /static /home/jonmsawyer/register.flydragondesign.com/fdregister/static
+  Alias /static/admin /path/to/.virtualenvs/fdregister/lib/python2.7/site-packages/django/contrib/admin/static/admin
+  Alias /static /path/to/register.flydragondesign.com/fdregister/static
   <Location />
     AuthType Basic
     AuthName "register.flydragondesign.com portal"
-    AuthUserFile /home/jonmsawyer/register.flydragondesign.com/auth/htpasswd
+    AuthUserFile /path/to/register.flydragondesign.com/auth/htpasswd
     Require valid-user
   </Location>
 </VirtualHost>

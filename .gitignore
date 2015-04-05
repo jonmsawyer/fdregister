@@ -1,4 +1,5 @@
 conf/site_settings.py
+conf/fdregister-apache.conf
 fdregister/wsgi-virtualenv.py
 
 # Custom
